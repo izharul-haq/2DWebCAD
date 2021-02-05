@@ -5,13 +5,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>2D Web CAD - Drawing</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/popup.css">
         <script src="main.js" defer></script>
     </head>
 
     <body>
-        <div>
-            <canvas></canvas>
+        <!--Pop up window-->
+        <div class="popup-container">
+            <div class="form-container">
+                <form action="" class="input-form" id="drawing-form">
+                    <!--Drawing type-->
+                    <div class="input-row">
+                        <div class="label-col">
+                            <label class="label-input">Drawing Type</label>
+                        </div>
+                        <div class="input-col">
+                            <input class="radio-input" type="radio" id="line" name="drawtype" value="line" required>
+                            <label for="line">Line</label>
+                            
+                            <input class="radio-input" type="radio" id="square" name="drawtype" value="square" required>
+                            <label for="square">Square</label>
+                            
+                            <input class="radio-input" type="radio" id="polygon" name="drawtype" value="polygon" required>
+                            <label for="polygon">Polygon</label>
+                        </div>
+                    </div>
+                    <!--Vertices Coordinates-->
+                    <div class="input-row">
+                        <div class="label-col">
+                            <label class="label-input">Coordinates</label>
+                        </div>
+                        <div class="input-col">
+                            <input class="text-input" type="text" name="coor" required>
+                        </div>
+                    </div>
+                    <!--Vertices Color-->
+                    <div class="input-row">
+                        <div class="label-col">
+                            <label class="label-input">Colors</label>
+                        </div>
+                        <div class="input-col">
+                            <input class="text-input" type="text" name="color" required>
+                        </div>
+                    </div>
+                </form>
+                <!--Submit button-->
+                <div class="input-row">
+                    <button class="cancel-button">Cancel</button>
+                    <input class="submit-input" type="submit" name="draw" value="Draw" form="drawing-form">
+                </div>
+            </div>
         </div>
+
         <footer class="web-footer">
             <p>13518092 13518095 13518110</p>
         </footer>
