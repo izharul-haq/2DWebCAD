@@ -7,7 +7,7 @@ body {
 
 .main-container {
     border-radius: 15px;
-    width: 500px;
+    min-width: 500px;
     height: auto;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -71,4 +71,11 @@ a:hover {
     text-align: center;
     position: fixed;
     bottom: 0;
+}
+
+.draw-canvas {
+    width: 500px;
+    height: 500px;
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
 }

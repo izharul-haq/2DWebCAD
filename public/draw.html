@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/popup.css">
         <script src="main.js" defer></script>
+        <script src="popup.js" defer></script>
     </head>
 
     <body>
@@ -51,10 +52,14 @@
                 </form>
                 <!--Submit button-->
                 <div class="input-row">
-                    <button class="cancel-button">Cancel</button>
+                    <button class="cancel-button" onclick="closePopUpWindow(0)">Cancel</button>
                     <input class="submit-input" type="submit" name="draw" value="Draw" form="drawing-form">
                 </div>
             </div>
+        </div>
+
+        <div class="main-container">
+            <canvas class="draw-canvas"></canvas>
         </div>
 
         <footer class="web-footer">
