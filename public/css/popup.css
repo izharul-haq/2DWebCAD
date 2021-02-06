@@ -55,7 +55,7 @@
 
 .text-input {
     font-family: 'Roboto';
-    width: 98%;
+    width: 90%;
     height: 20px;
     border: 1px solid gray;
     border-radius: 5px;
@@ -64,6 +64,32 @@
 
 .text-input:focus {
     border: 1px solid #0075FF;
+}
+
+.help-button {
+    background-color: #FFFFFF;
+    color: #F26CA7;
+    display: inline;
+    font-family: 'Viga';
+    border: 2px solid #F26CA7;
+    border-radius: 50%;
+    text-align: center;
+    outline: none;
+}
+
+.help-text {
+    display: none;
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+#warning-text {
+    color: #F26CA7;
+    font-family: 'Roboto';
+    font-weight: bold;
+    display: none;
+    text-align: center;
 }
 
 .cancel-button {
@@ -82,7 +108,7 @@
     color: #FFFFFF;
 }
 
-.submit-input, .submit-input:active, .submit-input:focus {
+.submit-input {
     background-color: #F26CA7;
     color: #FFFFFF;
     font-family: 'Viga';
@@ -96,4 +122,10 @@
 .submit-input:hover {
     background-color: #FFFFFF;
     color: #F26CA7;
+}
+
+.submit-input:active {
+    background-color: #A05B79;
+    color: #FFFFFF;
+    border: 3px solid #A05B79;
 }

@@ -74,8 +74,39 @@ a:hover {
 }
 
 .draw-canvas {
+    background-color: #FFFFFF;
     width: 500px;
     height: 500px;
     border: 3px solid #FFFFFF;
     border-radius: 10px;
+}
+
+.option-button {
+    background-color: #F26CA7;
+    color: #FFFFFF;
+    font-family: 'Viga';
+    font-size: 20px;
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    outline: none;    
+}
+
+.option-button:hover {
+    background-color: #FFFFFF;
+    color: #F26CA7;
+}
+
+.option-button:active {
+    outline: none;
+    background-color: #A05B79;
+    color: #FFFFFF;
+}
+
+.save-load {
+    float: left;
+    margin-right: 5px;
+}
+
+.change {
+    float: right;
 }

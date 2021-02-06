@@ -6,7 +6,6 @@
         <title>2D Web CAD - Drawing</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/popup.css">
-        <script src="main.js" defer></script>
         <script src="popup.js" defer></script>
     </head>
 
@@ -14,7 +13,7 @@
         <!--Pop up window-->
         <div class="popup-container">
             <div class="form-container">
-                <form action="" class="input-form" id="drawing-form">
+                <div class="input-form">
                     <!--Drawing type-->
                     <div class="input-row">
                         <div class="label-col">
@@ -38,6 +37,11 @@
                         </div>
                         <div class="input-col">
                             <input class="text-input" type="text" name="coor" required>
+                            <button class="help-button" onclick="showHelp(0)">?</button>
+                            <p class="help-text">
+                                Format: x1,y1,z1(space)x2,y2,z2(space)...<br>
+                                with x and y within range [-1, 1]
+                            </p>
                         </div>
                     </div>
                     <!--Vertices Color-->
@@ -47,19 +51,28 @@
                         </div>
                         <div class="input-col">
                             <input class="text-input" type="text" name="color" required>
+                            <button class="help-button" onclick="showHelp(1)">?</button>
+                            <p class="help-text"></p>
                         </div>
                     </div>
-                </form>
+                </div>
+                <p id="warning-text">This is a warning</p>
                 <!--Submit button-->
                 <div class="input-row">
                     <button class="cancel-button" onclick="closePopUpWindow(0)">Cancel</button>
-                    <input class="submit-input" type="submit" name="draw" value="Draw" form="drawing-form">
+                    <button class="submit-input" onclick="drawInput()">Draw</button>
                 </div>
             </div>
         </div>
 
+        <!--canvas container-->
         <div class="main-container">
             <canvas class="draw-canvas"></canvas>
+            <div class="button-row">
+                <button class="option-button save-load">Save</button>
+                <button class="option-button save-load">Load</button>
+                <button class="option-button change">Change</button>
+            </div>
         </div>
 
         <footer class="web-footer">
