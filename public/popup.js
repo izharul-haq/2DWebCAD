@@ -37,6 +37,9 @@ function parseTextInput(textInput) {
         for (j of inputTemp) {
             inputArray.push(parseFloat(j));
         }
+        if (inputTemp.length == 2) {
+            inputArray.push(0);
+        }
     }
 
     return inputArray;
@@ -59,8 +62,6 @@ function drawInput() {
     else {
         var coorData = parseTextInput(coorValue);
         var colorData = parseTextInput(colorValue);
-
-        const canvas = document.querySelector('canvas');
-        const gl = canvas.getContext('webgl');
+        console.log(coorData);
     }
 }
