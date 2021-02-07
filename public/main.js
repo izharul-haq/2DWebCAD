@@ -1,11 +1,17 @@
-/* POP-UP FUNCTIONS */
-function closePopUpWindow(elmtIndex) {
+// This .js file is used to define every function
+// that will be used by pop-up container, especially
+// pop-up with id main-popup.
+
+import {draw} from './gl.js';
+
+/* HTML POP-UP FUNCTIONS */
+window.closePopUpWindow = function closePopUpWindow(elmtIndex) {
     var popUpWindows = document.getElementsByClassName('popup-container');
     var activePopUpWindow = popUpWindows[elmtIndex];
     activePopUpWindow.style.display = "none";
 }
 
-function showHelp(helpButtonIndex) {
+window.showHelp = function showHelp(helpButtonIndex) {
     var helpButtons = document.getElementsByClassName('help-button');
     var activeHelpButton = helpButtons[helpButtonIndex];
     var helpTexts = document.getElementsByClassName('help-text');
@@ -23,18 +29,21 @@ function showHelp(helpButtonIndex) {
     }
 }
 
-function warning(msg, display) {
+window.warning = function warning(msg, display) {
     var warning_text = document.getElementById("warning-text");
     warning_text.innerHTML = msg;
     warning_text.style.display = display;
 }
 
 function parseTextInput(textInput) {
+    // Parse text input into an array
+    // suitable to be used by webgl
+    
     var input = textInput.split(" ");
     var inputArray = [];
-    for (i of input) {
+    for (var i of input) {
         var inputTemp = i.split(",");
-        for (j of inputTemp) {
+        for (var j of inputTemp) {
             inputArray.push(parseFloat(j));
         }
         if (inputTemp.length == 2) {
@@ -45,14 +54,14 @@ function parseTextInput(textInput) {
     return inputArray;
 }
 
-function drawInput() {
-    var typeRadio = document.querySelector('input[name="drawtype"]:checked');
-    var typeValue = typeRadio ? typeRadio.value : "";
-    
-    var coorInput = document.querySelector('input[name="coor"]');
-    var coorValue = coorInput.value;
+window.drawInput = function drawInput() {
+    const typeInput = document.querySelector('input[name="drawtype"]:checked');
+    const coorInput = document.querySelector('input[name="coor"]');
+    const colorInput = document.querySelector('input[name="color"]');
+    const canvas = document.querySelector('canvas');
 
-    var colorInput = document.querySelector('input[name="color"]');
+    var typeValue = typeInput ? typeInput.value : "";
+    var coorValue = coorInput.value;
     var colorValue = colorInput.value;
 
     if (typeValue == "" || coorValue == "" || colorValue == "") {
@@ -62,6 +71,6 @@ function drawInput() {
     else {
         var coorData = parseTextInput(coorValue);
         var colorData = parseTextInput(colorValue);
-        console.log(coorData);
+        draw(canvas, typeValue, coorValue, colorValue);   
     }
 }
