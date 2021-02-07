@@ -3,6 +3,7 @@
 ## Requirement
 
 1. Node.js
+2. Browser that support JavaScript ES 6 (up-to-date browser)
 
 ## How to Use
 
