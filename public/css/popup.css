@@ -34,9 +34,13 @@
 .input-row {
     display: table;
     width: 100%;
+    text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
-    text-align: center;
+}
+
+#line-input, #square-input, #polygon-input{
+    display: none;
 }
 
 .label-col {
@@ -47,15 +51,24 @@
     line-height: 22px;
 }
 
+.point-label, .square-label {
+    text-align: center !important;
+    width: 25% !important;
+}
+
 .input-col {
     font-family: 'Roboto';
     float: left;
     width: 75%;
 }
 
+.point-input, .square-input {
+    width: 25% !important;
+}
+
 .text-input {
     font-family: 'Roboto';
-    width: 90%;
+    width: 100%;
     height: 20px;
     border: 1px solid gray;
     border-radius: 5px;

@@ -35,6 +35,26 @@ window.warning = function warning(msg, display) {
     warning_text.style.display = display;
 }
 
+window.showInputForm = function showInputForm(type) {
+    var lineForm = document.getElementById("line-input");
+    var squareForm = document.getElementById("square-input");
+    var polygonForm = document.getElementById("polygon-input");
+
+    lineForm.style.display = "none";
+    squareForm.style.display = "none";
+    polygonForm.style.display = "none";
+
+    if (type == "line") {
+        lineForm.style.display = "table";
+    }
+    else if (type == "square") {
+        squareForm.style.display = "table";
+    }
+    else {
+        polygonForm.style.display = "table";
+    }
+}
+
 function parseTextInput(textInput) {
     // Parse text input into an array
     // suitable to be used by webgl
@@ -56,21 +76,45 @@ function parseTextInput(textInput) {
 
 window.drawInput = function drawInput() {
     const typeInput = document.querySelector('input[name="drawtype"]:checked');
-    const coorInput = document.querySelector('input[name="coor"]');
-    const colorInput = document.querySelector('input[name="color"]');
+    var typeValue = typeInput ? typeInput.value : "";
+
+    var input1, input2;
+    var input1Value, input2Value;
+    if (typeValue == 'line') {
+        input1 = document.getElementById('P1');
+        input2 = document.getElementById('P2');
+
+        input1Value = input1.value;
+        input2Value = input2.value;
+    }
+    else if (typeValue == 'square') {
+        input1 = document.getElementById('scale');
+        input2 = document.getElementById('P0');
+
+        input1Value = input1.value;
+        input2Value = input2.value;
+    }
+    else if (typeValue == 'polygon') {
+        input1 = document.getElementById('coor');
+        
+        input1Value = input1.value;
+        input2Value = "None";
+    }
+    else {
+        input1Value = "";
+        input2Value = "";
+    }
+
+    const colorInput = document.getElementById('color-input');
+    var colorValue = colorInput.value;
+    
     const canvas = document.querySelector('canvas');
 
-    var typeValue = typeInput ? typeInput.value : "";
-    var coorValue = coorInput.value;
-    var colorValue = colorInput.value;
-
-    if (typeValue == "" || coorValue == "" || colorValue == "") {
+    if (typeValue == "" || input1Value == "" || input2Value == "" || colorValue == "") {
         var msg = "Warning: Fill every input first"
         warning(msg, "block");
     }
     else {
-        var coorData = parseTextInput(coorValue);
-        var colorData = parseTextInput(colorValue);
-        draw(canvas, typeValue, coorValue, colorValue);   
+        warning("", "none");
     }
 }

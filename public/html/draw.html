@@ -20,39 +20,60 @@
                             <label class="label-input">Drawing Type</label>
                         </div>
                         <div class="input-col">
-                            <input class="radio-input" type="radio" id="line" name="drawtype" value="line" required>
+                            <input class="radio-input" type="radio" name="drawtype" value="line" onchange="showInputForm('line')">
                             <label for="line">Line</label>
                             
-                            <input class="radio-input" type="radio" id="square" name="drawtype" value="square" required>
+                            <input class="radio-input" type="radio" name="drawtype" value="square" onchange="showInputForm('square')">
                             <label for="square">Square</label>
                             
-                            <input class="radio-input" type="radio" id="polygon" name="drawtype" value="polygon" required>
+                            <input class="radio-input" type="radio" name="drawtype" value="polygon" onchange="showInputForm('polygon')">
                             <label for="polygon">Polygon</label>
                         </div>
                     </div>
-                    <!--Vertices Coordinates-->
-                    <div class="input-row">
+                    <!--Vertices Input-->
+                    <div class="input-row" id="line-input">
+                        <div class="label-col point-label">
+                            <label class="label-input">Point 1</label>
+                        </div>
+                        <div class="input-col point-input">
+                            <input class="text-input" type="text" id="P1">
+                        </div>
+                        <div class="label-col point-label">
+                            <label class="label-input">Point 2</label>
+                        </div>
+                        <div class="input-col point-input">
+                            <input class="text-input" type="text" id="P2">
+                        </div>
+                    </div>
+                    <div class="input-row" id="square-input">
+                        <div class="label-col square-label">
+                            <label class="label-input">Scale</label>
+                        </div>
+                        <div class="input-col square-input">
+                            <input class="text-input" type="text" id="scale">
+                        </div>
+                        <div class="label-col square-label">
+                            <label class="label-input">Initial Point</label>
+                        </div>
+                        <div class="input-col square-input">
+                            <input class="text-input" type="text" id="P0">
+                        </div>
+                    </div>
+                    <div class="input-row" id="polygon-input">
                         <div class="label-col">
                             <label class="label-input">Coordinates</label>
                         </div>
                         <div class="input-col">
-                            <input class="text-input" type="text" name="coor" required>
-                            <button class="help-button" onclick="showHelp(0)">?</button>
-                            <p class="help-text">
-                                Format: x1,y1(space)x2,y2(space)...<br>
-                                with x and y within range [-1, 1]
-                            </p>
+                            <input class="text-input" type="text" id="coor">
                         </div>
                     </div>
                     <!--Vertices Color-->
-                    <div class="input-row">
+                    <div class="input-row" id="color-input">
                         <div class="label-col">
                             <label class="label-input">Colors</label>
                         </div>
                         <div class="input-col">
-                            <input class="text-input" type="text" name="color" required>
-                            <button class="help-button" onclick="showHelp(1)">?</button>
-                            <p class="help-text"></p>
+                            <input class="text-input" type="text">
                         </div>
                     </div>
                 </div>

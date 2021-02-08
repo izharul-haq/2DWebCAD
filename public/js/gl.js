@@ -1,22 +1,55 @@
 // This .js file is used to define every function
 // that will be used to draw with webGL.
 
-function pointDistance(coorData, x_from, y_from, x_to, y_to) {
-    return Math.sqrt((coorData[x_to] - coorDatap[x_from])**2 + (coorData[y_to] - coorDatap[y_from])**2);
+/*
+function isMember(elmt, array) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == elmt) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function add(elmt, array) {
+    if (!isMember(elmt, array)) {
+        array.push(elmt);
+    }
+}
+
+function pointDistance(x_from, y_from, x_to, y_to) {
+    // return euclidean distance between two points
+    var x = (x_to - x_from)**2;
+    var y = (y_to - y_from)**2;
+    return Math.sqrt(x + y);
 }
 
 function getNearestPoint(coorData, idxPointOrigin, listIdxPointTarget, idxPointException) {
+    console.log("idxPointOrigin");
+    console.log(idxPointOrigin);
     var shortestDistance = 100;
     var nearestPoint;
+    console.log(nearestPoint);
+    console.log("listIdxPointTarget: ");
+    console.log(listIdxPointTarget);
+    for (var i = 0; i < listIdxPointTarget.length; i++) {
+        console.log("listIdxPointTarget[i]: ");
+        console.log(listIdxPointTarget[i]);
+        
+        if (!isMember(listIdxPointTarget[i], idxPointException)) {
+            var x_from = coorData[idxPointOrigin * 3];
+            console.log(x_from);
+            var y_from = coorData[idxPointOrigin * 3 + 1];
+            console.log(y_from);
+            var x_to = coorData[listIdxPointTarget[i] * 3];
+            console.log(x_to);
+            var y_to = coorData[listIdxPointTarget[i] * 3 + 1];
+            console.log(y_to);
 
-    for (i = 0; i < listIdxPointTarget.length; i++) {
-        if (i != idxPointException) {
-            var x_from = coorData[idxPointOrigin];
-            var y_from = x_from + 1;
-            var x_to = coorData[listIdxPointTarget[i]] * 3;
-            var y_to = x_to + 1;
-
-            var distance = pointDistance(coorData, x_from, x_to, y_from, y_to);
+            var distance = pointDistance(x_from, y_from, x_to, y_to);
+            console.log("distance");
+            console.log(distance);
 
             if (distance < shortestDistance) {
                 shortestDistance = distance;
@@ -24,55 +57,92 @@ function getNearestPoint(coorData, idxPointOrigin, listIdxPointTarget, idxPointE
             }
         }
     }
+    console.log(nearestPoint);
 
     return nearestPoint;
 }
 
 function getIndex(type, coorData) {
-    var idxData;
+    var idxData = [];
     
     if (type == "line") {
-        idxData = [0,1];
+        idxData.push(0);
+        idxData.push(1);
     }
     else {
-        var idxTemp;
+        var idxTemp = [];
         if (type == "square") {
             idxTemp = [0, 1, 2, 3];
         }
         else {
-            for (i = 0; i < coorData.length / 2; i++) {
+            for (var i = 0; i < coorData.length / 2; i++) {
                 idxTemp.push(i);
             }
         }
 
-        var idxUsed = [];
-        for (i = 0; i < idxTemp.length; i++) {
-            var idxTarget;
-            if (i == 0) {
-                idxTarget = idxTemp;
-            }
-            else {
-                idxTarget = idxUsed;
-            }
+        console.log(idxTemp);
 
-            var nearestPoint1 = getNearestPoint(coorData, i, idxTarget, i);
-            var nearestPoint2 = getNearestPoint(coorData, )
+        var idxUsed = [];
+        var idxTarget = [];
+        var idxException = [];
+        for (var i = 0; i < idxTemp.length; i++) {
+            if (idxTemp[i] !== undefined) {
+                console.log(idxTemp[i]);
+                if (i == 0) {
+                    idxTarget = idxTemp.slice();
+                    add(i, idxUsed);
+                    idxException = idxUsed.slice();
+                }
+                else {
+                    idxTarget = idxUsed.slice();
+                    idxException = [].slice();
+                }
+
+                console.log(idxTarget);
+                var nearestPoint1 = getNearestPoint(coorData, i, idxTarget, idxException);
+                add(nearestPoint1, idxException);
+                var nearestPoint2 = getNearestPoint(coorData, i, idxTarget, idxException);
+                
+                add(nearestPoint1, idxUsed);
+                add(nearestPoint2, idxUsed);
+
+                delete idxTemp[i];
+                delete idxTemp[nearestPoint1];
+                delete idxTemp[nearestPoint2];
+
+                idxData.push(nearestPoint1);
+                idxData.push(i);
+                idxData.push(nearestPoint2);
+                console.log(idxData);
+
+                
+                console.log("end");
+            }
         }
     }
 
     return idxData;
 }
+*/
+
+// Ignore codes above
+
+// TODO
+function drawLine() {
+    
+}
+
+// TODO
+function drawSquare() {
+
+}
+
+// TODO
+function drawPolygon() {
+
+}
 
 export function draw(canvas, type, coorData, colorData) {
     const gl = canvas.getContext('webgl');
-    var coorData = coorData;
-    var colorData = colorData;
-    var indxData;
-
-    if (type == "line") {
-        indxData = [0, 1];
-    }
-    else if (type == "square") {
-
-    }
+    
 }
