@@ -169,10 +169,14 @@
     background-color: #DDDDDD;
 }
 
+.tab-info {
+    padding: 5px;
+}
+
 .text-info {
     width: 99%;
     height: 200px;
-    margin-top: 5px;
+    margin: 0;
     font-family: 'Roboto';
     font-size: 15px;
     border: none;
