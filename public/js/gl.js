@@ -1,148 +1,118 @@
 // This .js file is used to define every function
-// that will be used to draw with webGL.
+// that will be used to draw geometry with webgl
 
-/*
-function isMember(elmt, array) {
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] == elmt) {
-            return true;
-        }
+function drawLine(webgl, input1Data, input2Data, colorData) {
+    const vertexProgram =
+    `
+    attribute vec2 pos;
+    void main() {
+        gl_Position = vec4(pos, 0, 1); 
     }
+    `;
+    const vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
+    webgl.shaderSource(vertexShader, vertexProgram);
+    webgl.compileShader(vertexShader);
 
-    return false;
-}
+    const fragmentProgram =
+    `
+    precision mediump float;
 
-function add(elmt, array) {
-    if (!isMember(elmt, array)) {
-        array.push(elmt);
+    uniform vec4 col;
+    void main() {
+        gl_FragColor = col;
     }
+    `;
+    const fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
+    webgl.shaderSource(fragmentShader, fragmentProgram);
+    webgl.compileShader(fragmentShader);
+
+    const program = webgl.createProgram();
+    webgl.attachShader(program, vertexShader);
+    webgl.attachShader(program, fragmentShader);
+    webgl.linkProgram(program);
+
+    var vertexData = input1Data.concat(input2Data);
+    const vertexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertexData), webgl.STATIC_DRAW);
+
+    webgl.useProgram(program);
+    const vertexPosition = webgl.getAttribLocation(program, 'pos');
+    const fragmentColor = webgl.getUniformLocation(program, 'col');
+    webgl.vertexAttribPointer(vertexPosition, 2, webgl.FLOAT, false, 0, 0);
+    webgl.uniform4fv(fragmentColor, colorData);
+    webgl.enableVertexAttribArray(vertexPosition);
+    webgl.drawArrays(webgl.LINES, 0, vertexData.length / 2);
 }
 
-function pointDistance(x_from, y_from, x_to, y_to) {
-    // return euclidean distance between two points
-    var x = (x_to - x_from)**2;
-    var y = (y_to - y_from)**2;
-    return Math.sqrt(x + y);
-}
-
-function getNearestPoint(coorData, idxPointOrigin, listIdxPointTarget, idxPointException) {
-    console.log("idxPointOrigin");
-    console.log(idxPointOrigin);
-    var shortestDistance = 100;
-    var nearestPoint;
-    console.log(nearestPoint);
-    console.log("listIdxPointTarget: ");
-    console.log(listIdxPointTarget);
-    for (var i = 0; i < listIdxPointTarget.length; i++) {
-        console.log("listIdxPointTarget[i]: ");
-        console.log(listIdxPointTarget[i]);
-        
-        if (!isMember(listIdxPointTarget[i], idxPointException)) {
-            var x_from = coorData[idxPointOrigin * 3];
-            console.log(x_from);
-            var y_from = coorData[idxPointOrigin * 3 + 1];
-            console.log(y_from);
-            var x_to = coorData[listIdxPointTarget[i] * 3];
-            console.log(x_to);
-            var y_to = coorData[listIdxPointTarget[i] * 3 + 1];
-            console.log(y_to);
-
-            var distance = pointDistance(x_from, y_from, x_to, y_to);
-            console.log("distance");
-            console.log(distance);
-
-            if (distance < shortestDistance) {
-                shortestDistance = distance;
-                nearestPoint = i;
-            }
-        }
+// TODO
+function drawSquare(webgl, input1Data, input2Data, colorData) {
+    const vertexProgram =
+    `
+    attribute vec2 pos;
+    void main() {
+        gl_Position = vec4(pos, 0, 1); 
     }
-    console.log(nearestPoint);
+    `;
+    const vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
+    webgl.shaderSource(vertexShader, vertexProgram);
+    webgl.compileShader(vertexShader);
 
-    return nearestPoint;
+    const fragmentProgram =
+    `
+    precision mediump float;
+
+    uniform vec4 col;
+    void main() {
+        gl_FragColor = col;
+    }
+    `;
+    const fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
+    webgl.shaderSource(fragmentShader, fragmentProgram);
+    webgl.compileShader(fragmentShader);
+
+    const program = webgl.createProgram();
+    webgl.attachShader(program, vertexShader);
+    webgl.attachShader(program, fragmentShader);
+    webgl.linkProgram(program);
+
+    var k = input1Data[0];
+    var x0 = input2Data[0];
+    var y0 = input2Data[1];
+
+    var vertexData = input2Data.concat([x0 + k, y0, x0, y0 - k, x0 + k, y0 - k]);
+    const vertexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertexData), webgl.STATIC_DRAW);
+
+    var indexData = [0, 2, 3, 0, 1, 3];
+    const indexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indexData), webgl.STATIC_DRAW);
+
+    webgl.useProgram(program);
+    const vertexPosition = webgl.getAttribLocation(program, 'pos');
+    const fragmentColor = webgl.getUniformLocation(program, 'col');
+    webgl.vertexAttribPointer(vertexPosition, 2, webgl.FLOAT, false, 0, 0);
+    webgl.uniform4fv(fragmentColor, colorData);
+    webgl.enableVertexAttribArray(vertexPosition);
+    webgl.drawElements(webgl.TRIANGLES, indexData.length, webgl.UNSIGNED_SHORT, 0);
 }
 
-function getIndex(type, coorData) {
-    var idxData = [];
-    
+// TODO
+function drawPolygon(webgl, input1Data, colorData) {
+
+}
+
+export function draw(canvas, type, input1Data, input2Data, colorData) {
+    const webgl = canvas.getContext('webgl');
     if (type == "line") {
-        idxData.push(0);
-        idxData.push(1);
+        drawLine(webgl, input1Data, input2Data, colorData);
     }
-    else {
-        var idxTemp = [];
-        if (type == "square") {
-            idxTemp = [0, 1, 2, 3];
-        }
-        else {
-            for (var i = 0; i < coorData.length / 2; i++) {
-                idxTemp.push(i);
-            }
-        }
-
-        console.log(idxTemp);
-
-        var idxUsed = [];
-        var idxTarget = [];
-        var idxException = [];
-        for (var i = 0; i < idxTemp.length; i++) {
-            if (idxTemp[i] !== undefined) {
-                console.log(idxTemp[i]);
-                if (i == 0) {
-                    idxTarget = idxTemp.slice();
-                    add(i, idxUsed);
-                    idxException = idxUsed.slice();
-                }
-                else {
-                    idxTarget = idxUsed.slice();
-                    idxException = [].slice();
-                }
-
-                console.log(idxTarget);
-                var nearestPoint1 = getNearestPoint(coorData, i, idxTarget, idxException);
-                add(nearestPoint1, idxException);
-                var nearestPoint2 = getNearestPoint(coorData, i, idxTarget, idxException);
-                
-                add(nearestPoint1, idxUsed);
-                add(nearestPoint2, idxUsed);
-
-                delete idxTemp[i];
-                delete idxTemp[nearestPoint1];
-                delete idxTemp[nearestPoint2];
-
-                idxData.push(nearestPoint1);
-                idxData.push(i);
-                idxData.push(nearestPoint2);
-                console.log(idxData);
-
-                
-                console.log("end");
-            }
-        }
+    else if (type == "square") {
+        drawSquare(webgl, input1Data, input2Data, colorData);
     }
-
-    return idxData;
-}
-*/
-
-// Ignore codes above
-
-// TODO
-function drawLine() {
-    
-}
-
-// TODO
-function drawSquare() {
-
-}
-
-// TODO
-function drawPolygon() {
-
-}
-
-export function draw(canvas, type, coorData, colorData) {
-    const gl = canvas.getContext('webgl');
-    
+    else { // type == "polygon"
+        drawPolygon(webgl, input1Data, colorData);
+    }
 }
