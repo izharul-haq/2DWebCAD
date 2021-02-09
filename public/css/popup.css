@@ -10,7 +10,11 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.form-container {
+#change-popup, #help-popup {
+    display: none;
+}
+
+.form-container, .info-container {
     background-color: #FFFFFF;
     border-radius: 15px;
     width: 500px;
@@ -26,6 +30,12 @@
 }
 
 .input-form {
+    width: 90%;
+    height: 100%;
+    margin: 10px 5%;
+}
+
+.help-info {
     width: 90%;
     height: 100%;
     margin: 10px 5%;
@@ -141,4 +151,31 @@
     background-color: #A05B79;
     color: #FFFFFF;
     border: 3px solid #A05B79;
+}
+
+.tab-button {
+    height: 30px;
+    font-family: 'Viga';
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #F26CA7;
+    border: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.tab-button:active, .tab-button:focus {
+    outline: none;
+    background-color: #DDDDDD;
+}
+
+.text-info {
+    width: 99%;
+    height: 200px;
+    margin-top: 5px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    border: none;
+    resize: none;
+    outline: none;
 }

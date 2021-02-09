@@ -36,19 +36,6 @@ body {
     font-size: 25px;
 }
 
-.web-button {
-    height: 50px;
-
-    background-color: #FFFFFF00;
-    color: #FFFFFF;
-    
-    font-family: 'Viga';
-    font-size: 20px;
-    
-    border: 2px solid #FFFFFF;
-    border-radius: 10px;
-}
-
 a, a:visited, a:active, a:focus {
     font-size: 20px;
     color: #FFFFFF;
@@ -107,6 +94,25 @@ a:hover {
     margin-right: 5px;
 }
 
-.change {
+.draw-button {
     float: right;
+}
+
+#help-button {
+    margin-right: 5px;
+}
+
+#main-draw-button {
+    background-color: #FFFFFF !important;
+    color: #F26CA7 !important;
+}
+
+#main-draw-button:hover {
+    background-color: #F26CA7 !important;
+    color: #FFFFFF !important;
+}
+
+#main-draw-button:active {
+    background-color: #EEEEEE !important;
+    color: #F26CA7 !important;
 }

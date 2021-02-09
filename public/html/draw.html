@@ -10,8 +10,8 @@
     </head>
 
     <body>
-        <!--Pop up window-->
-        <div class="popup-container" id="main-popup">
+        <!--draw pop-up window-->
+        <div class="popup-container" id="draw-popup">
             <div class="form-container">
                 <div class="input-form">
                     <!--Drawing type-->
@@ -80,8 +80,55 @@
                 <p id="warning-text">This is a warning</p>
                 <!--Submit button-->
                 <div class="input-row">
-                    <button class="cancel-button" onclick="closePopUpWindow(0)">Cancel</button>
+                    <button class="cancel-button" onclick="hidePopUpWindow('draw')">Cancel</button>
                     <button class="submit-input" onclick="drawInput()">Draw</button>
+                </div>
+            </div>
+        </div>
+
+        <!--change pop-up window-->
+        <div class="popup-container" id="change-popup">
+            <div class="form-container">
+                <div class="input-form">
+                    <div class="input-row" id="color-input">
+                        <div class="label-col">
+                            <label class="label-input">Scale</label>
+                        </div>
+                        <div class="input-col">
+                            <input class="text-input" type="text">
+                        </div>
+                    </div>
+                    <div class="input-row" id="color-input">
+                        <div class="label-col">
+                            <label class="label-input">Colors</label>
+                        </div>
+                        <div class="input-col">
+                            <input class="text-input" type="text">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <button class="cancel-button" onclick="hidePopUpWindow('change')">Cancel</button>
+                        <button class="submit-input" onclick="drawInput()">Change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--help pop-up window-->
+        <div class="popup-container" id="help-popup">
+            <div class="info-container">
+                <div class="help-info">
+                    <div class="tab-row">
+                        <button class="tab-button">Assumption</button>
+                        <button class="tab-button">Draw</button>
+                        <button class="tab-button">Change</button>
+                    </div>
+                    <div class="tab-info">
+                        <textarea class="text-info" readonly></textarea>
+                    </div>
+                    <div class="input-row">
+                        <button class="cancel-button" onclick="hidePopUpWindow('help')">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,7 +139,9 @@
             <div class="button-row">
                 <button class="option-button save-load">Save</button>
                 <button class="option-button save-load">Load</button>
-                <button class="option-button change">Change</button>
+                <button class="option-button" id="main-draw-button" onclick="showPopUpWindow('draw')">Draw</button>
+                <button class="option-button draw-button" onclick="showPopUpWindow('change')">Change</button>
+                <button class="option-button draw-button" id="help-button" onclick="showPopUpWindow('help')">Help</button>
             </div>
         </div>
 

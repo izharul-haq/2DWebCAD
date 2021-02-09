@@ -5,34 +5,14 @@
 import {draw} from './gl.js';
 
 /* HTML POP-UP FUNCTIONS */
-window.closePopUpWindow = function closePopUpWindow(elmtIndex) {
-    var popUpWindows = document.getElementsByClassName('popup-container');
-    var activePopUpWindow = popUpWindows[elmtIndex];
-    activePopUpWindow.style.display = "none";
+window.hidePopUpWindow = function hidePopUpWindow(window) {
+    var popUpWindow = document.getElementById(window + "-popup");
+    popUpWindow.style.display = "none";
 }
 
-window.showHelp = function showHelp(helpButtonIndex) {
-    var helpButtons = document.getElementsByClassName('help-button');
-    var activeHelpButton = helpButtons[helpButtonIndex];
-    var helpTexts = document.getElementsByClassName('help-text');
-    var activeHelpText = helpTexts[helpButtonIndex];
-
-    if (activeHelpText.style.display == "" || activeHelpText.style.display == "none") {
-        activeHelpText.style.display = "block";
-        activeHelpButton.style.backgroundColor = "#F26CA7";
-        activeHelpButton.style.color = "#FFFFFF";
-    }
-    else if (activeHelpText.style.display == "block") {
-        activeHelpText.style.display = "none";
-        activeHelpButton.style.backgroundColor = "#FFFFFF";
-        activeHelpButton.style.color = "#F26CA7";
-    }
-}
-
-window.warning = function warning(msg, display) {
-    var warning_text = document.getElementById("warning-text");
-    warning_text.innerHTML = msg;
-    warning_text.style.display = display;
+window.showPopUpWindow = function showPopUpWindow(window) {
+    var popUpWindow = document.getElementById(window + "-popup");
+    popUpWindow.style.display = "block";
 }
 
 window.showInputForm = function showInputForm(type) {
@@ -53,6 +33,12 @@ window.showInputForm = function showInputForm(type) {
     else {
         polygonForm.style.display = "table";
     }
+}
+
+window.warning = function warning(msg, display) {
+    var warning_text = document.getElementById("warning-text");
+    warning_text.innerHTML = msg;
+    warning_text.style.display = display;
 }
 
 function parseTextInput(textInput) {
