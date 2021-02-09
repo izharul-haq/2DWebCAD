@@ -3,7 +3,6 @@
 // draw-popup
 
 import {draw} from './gl.js';
-import {hidePopUpWindow} from './popup.js';
 
 window.showInputForm = function showInputForm(type) {
     var lineForm = document.getElementById("line-input");
