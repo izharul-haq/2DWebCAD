@@ -10,6 +10,8 @@
         <script src="../js/popup.js" defer></script>
         <script type="module" src="../js/draw.js" defer></script>
         <script src="../js/help.js" defer></script>
+        <script src="../js/change.js" defer></script>
+        <script src="../js/saveload.js" defer></script>
     </head>
 
     <body>
@@ -98,7 +100,7 @@
                             <label class="label-input">Scale</label>
                         </div>
                         <div class="input-col">
-                            <input class="text-input" type="text">
+                            <input id="scale-input" class="text-input" type="text">
                         </div>
                     </div>
                     <div class="input-row" id="color-input">
@@ -106,12 +108,12 @@
                             <label class="label-input">Colors</label>
                         </div>
                         <div class="input-col">
-                            <input class="text-input" type="text">
+                            <input id="color-input" class="text-input" type="text">
                         </div>
                     </div>
                     <div class="input-row">
                         <button class="cancel-button" onclick="hidePopUpWindow('change')">Cancel</button>
-                        <button class="submit-input" onclick="drawInput()">Change</button>
+                        <button class="submit-input" onclick="changeGeometry()">Change</button>
                     </div>
                 </div>
             </div>
@@ -140,8 +142,8 @@
         <div class="main-container">
             <canvas class="draw-canvas"></canvas>
             <div class="button-row">
-                <button class="option-button save-load">Save</button>
-                <button class="option-button save-load">Load</button>
+                <button class="option-button save-load" onclick="save()">Save</button>
+                <button class="option-button save-load" onclick="load()">Load</button>
                 <button class="option-button" id="main-draw-button" onclick="showPopUpWindow('draw')">Draw</button>
                 <button class="option-button draw-button" onclick="showPopUpWindow('change')">Change</button>
                 <button class="option-button draw-button" id="help-button" onclick="showPopUpWindow('help'); clearTextArea();">Help</button>
