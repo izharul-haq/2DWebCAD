@@ -1,6 +1,10 @@
 // This .js file is used to define every function
 // that will be used to draw geometry with webgl
 
+import {Geometry} from './geometry.js';
+
+window.geo = new Geometry();
+
 function drawLine(webgl, input1Data, input2Data, colorData) {
     const vertexProgram =
     `
@@ -43,6 +47,10 @@ function drawLine(webgl, input1Data, input2Data, colorData) {
     webgl.uniform4fv(fragmentColor, colorData);
     webgl.enableVertexAttribArray(vertexPosition);
     webgl.drawArrays(webgl.LINES, 0, vertexData.length / 2);
+
+    geo.setType("line");
+    geo.setCoorData(vertexData);
+    geo.setColorData(colorData);
 }
 
 // TODO
@@ -97,6 +105,11 @@ function drawSquare(webgl, input1Data, input2Data, colorData) {
     webgl.uniform4fv(fragmentColor, colorData);
     webgl.enableVertexAttribArray(vertexPosition);
     webgl.drawElements(webgl.TRIANGLES, indexData.length, webgl.UNSIGNED_SHORT, 0);
+
+    geo.setType("square");
+    geo.setCoorData(vertexData);
+    geo.setIndexData(indexData);
+    geo.setColorData(colorData);
 }
 
 // TODO

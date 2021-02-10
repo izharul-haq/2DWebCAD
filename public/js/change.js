@@ -4,7 +4,7 @@
 
 // TODO
 function scale() {
-
+    
 }
 
 // TODO
@@ -13,7 +13,7 @@ function changeColor() {
 }
 
 // TODO
-function changeGeometry() {
+window.changeGeometry = function changeGeometry() {
     var scaleInput = document.getElementById('scale-input');
     var colorInput = document.getElementById('color-input');
 
