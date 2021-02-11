@@ -37,15 +37,18 @@ body {
 }
 
 a, a:visited, a:active, a:focus {
+    text-decoration: none;
+}
+
+#draw-link, #draw-link:visited, #draw-link:active, #draw-link:focus {
     font-size: 20px;
     color: #FFFFFF;
     padding: 5px;
-    text-decoration: none;
     border: 2px solid #FFFFFF;
     border-radius: 8px;
 }
 
-a:hover {
+#draw-link:hover {
     background-color: #FFFFFF;
     color: #F26CA7;
 }
