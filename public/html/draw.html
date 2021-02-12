@@ -4,8 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>2D Web CAD - Drawing</title>
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
-        <link rel="stylesheet" type="text/css" href="../css/popup.css">
+        <link rel="stylesheet" type="text/css" href="../css/utils/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/utils/popup.css">
+        <link rel="stylesheet" type="text/css" href="../css/pages/draw_page.css">
         <script src="../js/main.js" defer></script>
         <script src="../js/popup.js" defer></script>
         <script type="module" src="../js/draw.js" defer></script>
@@ -16,8 +17,8 @@
 
     <body>
         <!--draw pop-up window-->
-        <div class="popup-container" id="draw-popup">
-            <div class="form-container">
+        <div class="modal-container" id="draw-popup">
+            <div class="container modal-form">
                 <div class="input-form">
                     <!--Drawing type-->
                     <div class="input-row">
@@ -92,8 +93,8 @@
         </div>
 
         <!--change pop-up window-->
-        <div class="popup-container" id="change-popup">
-            <div class="form-container">
+        <div class="modal-container" id="change-popup">
+            <div class="container modal-form">
                 <div class="input-form">
                     <div class="input-row" id="color-input">
                         <div class="label-col">
@@ -120,8 +121,8 @@
         </div>
 
         <!--help pop-up window-->
-        <div class="popup-container" id="help-popup">
-            <div class="info-container">
+        <div class="modal-container" id="help-popup">
+            <div class="container modal-info">
                 <div class="help-info">
                     <div class="tab-row">
                         <button class="tab-button" id="preface" onclick="viewHelp('preface')">Preface</button>
@@ -139,7 +140,7 @@
         </div>
 
         <!--canvas container-->
-        <div class="main-container">
+        <div class="container" id="canvas-container">
             <canvas class="draw-canvas"></canvas>
             <div class="button-row">
                 <button class="option-button save-load" onclick="save()"><a id="download">Save</a></button>

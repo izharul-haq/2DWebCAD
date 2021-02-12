@@ -1,0 +1,33 @@
+@import url('../utils/font.css');
+
+#draw-link, #draw-link:visited, #draw-link:active, #draw-link:focus {
+    font-size: 20px;
+    color: #FFFFFF;
+    padding: 5px;
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+}
+
+#draw-link:hover {
+    background-color: #FFFFFF;
+    color: #F26CA7;
+}
+
+#index-container {
+    text-align: center;
+}
+
+.web-title, .web-subtitle {
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 0;
+}
+
+.web-title {
+    margin-bottom: 0;
+    font-size: 50px;
+}
+
+.web-subtitle {
+    font-size: 25px;
+}

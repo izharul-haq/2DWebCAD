@@ -1,6 +1,6 @@
 @import url('font.css');
 
-.popup-container {
+.modal-container {
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -14,28 +14,11 @@
     display: none;
 }
 
-.form-container, .info-container {
+.modal-form, .modal-info {
     background-color: #FFFFFF;
-    border-radius: 15px;
-    width: 500px;
-    height: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
-.input-form {
-    width: 90%;
-    height: 100%;
-    margin: 10px 5%;
-}
-
-.help-info {
+.input-form, .help-info {
     width: 90%;
     height: 100%;
     margin: 10px 5%;
