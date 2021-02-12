@@ -115,26 +115,31 @@ window.drawInput = function drawInput() {
 }
 
 window.clearDrawForm = function clearDrawForm() {
-    const typeInput = document.querySelector('input[name="drawtype"]:checked');
-    var typeValue = typeInput ? typeInput.value : "";
-    typeInput.checked = false;
-
-    var input1, input2;
-    if (typeValue == 'line') {
-        input1 = document.getElementById('P1');
-        input2 = document.getElementById('P2');
-    }
-    else if (typeValue == 'square') {
-        input1 = document.getElementById('scale');
-        input2 = document.getElementById('P0');
-    }
-    else if (typeValue == 'polygon') {
-        input1 = document.getElementById('coor');
-    }
-    
     try {
+        const typeInput = document.querySelector('input[name="drawtype"]:checked');
+        var typeValue = typeInput ? typeInput.value : "";
+        typeInput.checked = false;
+
+        var input1, input2;
+        if (typeValue == 'line') {
+            input1 = document.getElementById('P1');
+            input2 = document.getElementById('P2');
+        }
+        else if (typeValue == 'square') {
+            input1 = document.getElementById('scale');
+            input2 = document.getElementById('P0');
+        }
+        else if (typeValue == 'polygon') {
+            input1 = document.getElementById('coor');
+        }
+
         input1.value = "";
-        input2.value = "";
+        try {
+            input2.value = "";
+        }
+        catch(err) {
+            // Do nothing
+        }
     }
     catch(err) {
 
