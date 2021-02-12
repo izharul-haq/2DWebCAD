@@ -59,7 +59,7 @@ function parseCoorInput(textInput) {
     return inputArray;
 }
 
-function parseColorInput(textInput) {
+export function parseColorInput(textInput) {
     var inputArray = [];
     var input = textInput.split(",");
         for (var j = 0; j < input.length; j++) {

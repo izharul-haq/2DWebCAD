@@ -50,6 +50,7 @@ function drawLine(webgl, input1Data, input2Data, colorData) {
 
     geo.setType("line");
     geo.setCoorData(vertexData);
+    geo.setIndexData([0, 1]);
     geo.setColorData(colorData);
 }
 
@@ -127,5 +128,60 @@ export function draw(canvas, type, input1Data, input2Data, colorData) {
     }
     else { // type == "polygon"
         drawPolygon(webgl, input1Data, colorData);
+    }
+}
+
+export function drawGeo(canvas, type, coorData, indexData, colorData) {
+    var webgl = canvas.getContext('webgl');
+
+    const vertexProgram =
+    `
+    attribute vec2 pos;
+    void main() {
+        gl_Position = vec4(pos, 0, 1); 
+    }
+    `;
+    const vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
+    webgl.shaderSource(vertexShader, vertexProgram);
+    webgl.compileShader(vertexShader);
+
+    const fragmentProgram =
+    `
+    precision mediump float;
+
+    uniform vec4 col;
+    void main() {
+        gl_FragColor = col;
+    }
+    `;
+    const fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
+    webgl.shaderSource(fragmentShader, fragmentProgram);
+    webgl.compileShader(fragmentShader);
+
+    const program = webgl.createProgram();
+    webgl.attachShader(program, vertexShader);
+    webgl.attachShader(program, fragmentShader);
+    webgl.linkProgram(program);
+
+    const vertexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(coorData), webgl.STATIC_DRAW);
+
+    const indexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indexData), webgl.STATIC_DRAW);
+
+    webgl.useProgram(program);
+    const vertexPosition = webgl.getAttribLocation(program, 'pos');
+    const fragmentColor = webgl.getUniformLocation(program, 'col');
+    webgl.vertexAttribPointer(vertexPosition, 2, webgl.FLOAT, false, 0, 0);
+    webgl.uniform4fv(fragmentColor, colorData);
+    webgl.enableVertexAttribArray(vertexPosition);
+
+    if (type == "line") {
+        webgl.drawElements(webgl.LINES, indexData.length, webgl.UNSIGNED_SHORT, 0);
+    }
+    else {
+        webgl.drawElements(webgl.TRIANGLES, indexData.length, webgl.UNSIGNED_SHORT, 0);
     }
 }
