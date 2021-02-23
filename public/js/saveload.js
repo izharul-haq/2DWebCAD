@@ -9,7 +9,7 @@ function save() {
         "indexData": geo.indexData,
         "colorData": geo.colorData
     };
-    var fileBlob = new Blob([JSON.stringify(fileContent)], {type:'application/json'});
+    var fileBlob = new Blob([JSON.stringify(fileContent)], { type: 'application/json' });
 
     window.URL = window.URL;
 
@@ -20,5 +20,24 @@ function save() {
 
 // TODO
 function load() {
-    
+    // Create XMLHttpRequest object
+    // var req = new XMLHttpRequest();
+
+    // req.onreadystatechange = reportStatus;
+    // req.open("GET","./geometry.json",true);
+    // req.send();
+
+    // funtion reportStatus(){
+    //     if (req.readyState == 4){
+    //         var mydata = JSON.parse(req)
+    //     }
+    // }
+    $.getJSON("./geometry.json")
+        .done(funtion(data) {
+            var mydata = JSON.parse(data);
+            geo.type = data[0].type;
+            geo.coorData = data[0].coorData;
+            geo.indexData = data[0].indexData;
+            geo.colorData = data[0].colorData;
+        })
 }
