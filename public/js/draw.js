@@ -140,6 +140,8 @@ window.clearDrawForm = function clearDrawForm() {
         catch(err) {
             // Do nothing
         }
+
+        document.getElementById(typeValue + '-input').style.display = 'none';
     }
     catch(err) {
 
