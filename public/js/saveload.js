@@ -1,7 +1,7 @@
 // This .js file is used to define every function
 // that will be used save and load file
 
-import { drawGeo } from "./gl";
+import { drawGeo } from "./gl.js";
 
 window.save = function save() {
     var fileName = "geometry.json";
@@ -20,22 +20,26 @@ window.save = function save() {
     link.setAttribute('download', fileName);
 }
 
-// TODO
-function readFile(input) {
-    // follow tutorial in this link:
-    // https://javascript.info/file
-    let file = input.files[0];
-    let reader = new FileReader();
+window.load = function load() {
+    var load_file = document.getElementById('load-file');
+    load_file.click();
+}
 
+// TODO
+window.readFile = function readFile(input) {
+    var file = input.files[0];
+
+    var reader = new FileReader();
     reader.readAsText(file);
 
     reader.onload = function() {
-        var mydata = JSON.parse(file);
+        var txtFile = reader.result;
+        var mydata = JSON.parse(txtFile);
         var canvas = document.querySelector('canvas');
-        geo.type = mydata[0].type;
-        geo.coorData = mydata[0].coorData;
-        geo.indexData = mydata[0].indexData;
-        geo.colorData = mydata[0].colorData;
+        geo.setType(mydata.type);
+        geo.setCoorData(mydata.coorData);
+        geo.setIndexData(mydata.indexData);
+        geo.setColorData(mydata.colorData);
         drawGeo(canvas, geo.type, geo.coorData, geo.indexData, geo.colorData);
     };
 
@@ -50,9 +54,4 @@ function readFile(input) {
            example using drawGeo see changeColor function
            in change.js
     */
-}
-
-window.load = function load() {
-    var load_file = document.getElementById('load-file');
-    load_file.click();
 }
