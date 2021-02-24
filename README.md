@@ -11,3 +11,11 @@
 2. Type `node server.js`
 3. Open your browser
 4. Type `localhost:3000` in the searchbar
+
+## Supported features
+
+1. Draw model (line and square)
+2. Scaling image (dilation)
+3. Change model color
+4. Save model to an external file (.json)
+5. Load model from an external file (.json)
