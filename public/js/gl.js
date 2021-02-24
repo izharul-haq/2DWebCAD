@@ -115,7 +115,62 @@ function drawSquare(webgl, input1Data, input2Data, colorData) {
 
 // TODO
 function drawPolygon(webgl, input1Data, colorData) {
-    alert('Sorry, it is not implemented yet.');
+    const vertexProgram =
+    `
+    attribute vec2 pos;
+    void main() {
+        gl_Position = vec4(pos, 0, 1); 
+    }
+    `;
+    const vertexShader = webgl.createShader(webgl.VERTEX_SHADER);
+    webgl.shaderSource(vertexShader, vertexProgram);
+    webgl.compileShader(vertexShader);
+
+    const fragmentProgram =
+    `
+    precision mediump float;
+
+    uniform vec4 col;
+    void main() {
+        gl_FragColor = col;
+    }
+    `;
+    const fragmentShader = webgl.createShader(webgl.FRAGMENT_SHADER);
+    webgl.shaderSource(fragmentShader, fragmentProgram);
+    webgl.compileShader(fragmentShader);
+
+    const program = webgl.createProgram();
+    webgl.attachShader(program, vertexShader);
+    webgl.attachShader(program, fragmentShader);
+    webgl.linkProgram(program);
+
+    var vertexData = input1Data;
+    const vertexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, vertexBuffer);
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertexData), webgl.STATIC_DRAW);
+
+    var indexData = [];
+    for (var i = 1; i < (input1Data.length/2)-1; i++){
+        indexData.push(0);
+        indexData.push(i);
+        indexData.push(i+1);
+    }
+    const indexBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+    webgl.bufferData(webgl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indexData), webgl.STATIC_DRAW);
+
+    webgl.useProgram(program);
+    const vertexPosition = webgl.getAttribLocation(program, 'pos');
+    const fragmentColor = webgl.getUniformLocation(program, 'col');
+    webgl.vertexAttribPointer(vertexPosition, 2, webgl.FLOAT, false, 0, 0);
+    webgl.uniform4fv(fragmentColor, colorData);
+    webgl.enableVertexAttribArray(vertexPosition);
+    webgl.drawElements(webgl.TRIANGLES, indexData.length, webgl.UNSIGNED_SHORT, 0);
+
+    geo.setType("polygon");
+    geo.setCoorData(vertexData);
+    geo.setIndexData(indexData);
+    geo.setColorData(colorData);
 }
 
 export function draw(canvas, type, input1Data, input2Data, colorData) {
