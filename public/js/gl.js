@@ -115,7 +115,7 @@ function drawSquare(webgl, input1Data, input2Data, colorData) {
 
 // TODO
 function drawPolygon(webgl, input1Data, colorData) {
-
+    alert('Sorry, it is not implemented yet.');
 }
 
 export function draw(canvas, type, input1Data, input2Data, colorData) {
