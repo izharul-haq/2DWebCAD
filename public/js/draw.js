@@ -43,7 +43,7 @@ function isFilled(typeValue, input1Value, input2Value, colorValue) {
 
 }
 
-function parseCoorInput(textInput) {
+export function parseCoorInput(textInput) {
     // Parse text input into an array
     // suitable to be used by webgl
     
