@@ -53,8 +53,9 @@ function viewHelp(tab) {
     } else if (tab == "change") {
         info =
             'SCALE\n' +
-            'SCALE refer to the first row input that asks you about scaling factor of your geometry. Please input scale following this format:\n' +
-            'Scale: any float number' +
+            'SCALE refer to the first row input that asks you about scaling factor and central point of dilation for your geometry. Please input scale following this format:\n' +
+            'Scaling factor: any float number\n' +
+            'Central point: x,y with x and y within range [-1,1]*\n' +
             '\n' + '\n' +
             'COLOR\n' +
             'COLOR refer to the second row input that asks you about color of your geometry. Please input color following this format:\n' +
