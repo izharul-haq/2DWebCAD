@@ -14,7 +14,7 @@
 
 ## Supported features
 
-1. Draw model (line and square)
+1. Draw model
 2. Scaling image (dilation)
 3. Change model color
 4. Save model to an external file (.json)
