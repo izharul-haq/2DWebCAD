@@ -32,12 +32,12 @@ function load() {
     //         var mydata = JSON.parse(req)
     //     }
     // }
-    $.getJSON("./geometry.json")
-        .done(funtion(data) {
-            var mydata = JSON.parse(data);
-            geo.type = data[0].type;
-            geo.coorData = data[0].coorData;
-            geo.indexData = data[0].indexData;
-            geo.colorData = data[0].colorData;
-        })
+    // $.getJSON("./geometry.json")
+    //     .done(funtion(data) {
+    //         var mydata = JSON.parse(data);
+    //         geo.type = data[0].type;
+    //         geo.coorData = data[0].coorData;
+    //         geo.indexData = data[0].indexData;
+    //         geo.colorData = data[0].colorData;
+    //     })
 }
