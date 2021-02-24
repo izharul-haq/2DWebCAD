@@ -1,7 +1,7 @@
 // This .js file is used to define every function
 // that will be used save and load file
 
-function save() {
+window.save = function save() {
     var fileName = "geometry.json";
     var fileContent = {
         "type": geo.type,
@@ -9,7 +9,7 @@ function save() {
         "indexData": geo.indexData,
         "colorData": geo.colorData
     };
-    var fileBlob = new Blob([JSON.stringify(fileContent)], { type: 'application/json' });
+    var fileBlob = new Blob([JSON.stringify(fileContent, null, 2)], { type: 'application/json' });
 
     window.URL = window.URL;
 
@@ -19,25 +19,21 @@ function save() {
 }
 
 // TODO
-function load() {
-    // Create XMLHttpRequest object
-    // var req = new XMLHttpRequest();
+function readFile(input) {
+    // follow tutorial in this link:
+    // https://javascript.info/file
 
-    // req.onreadystatechange = reportStatus;
-    // req.open("GET","./geometry.json",true);
-    // req.send();
+    /* 
+    Steps:
+        1. Read file as text
+        2. Parse text as JSON
+        3. Draw using drawGeo (in ../gl.js) function, for
+           example using drawGeo see changeColor function
+           in change.js
+    */
+}
 
-    // funtion reportStatus(){
-    //     if (req.readyState == 4){
-    //         var mydata = JSON.parse(req)
-    //     }
-    // }
-    // $.getJSON("./geometry.json")
-    //     .done(funtion(data) {
-    //         var mydata = JSON.parse(data);
-    //         geo.type = data[0].type;
-    //         geo.coorData = data[0].coorData;
-    //         geo.indexData = data[0].indexData;
-    //         geo.colorData = data[0].colorData;
-    //     })
+window.load = function load() {
+    var load_file = document.getElementById('load-file');
+    load_file.click();
 }

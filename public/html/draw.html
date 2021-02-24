@@ -12,7 +12,7 @@
         <script type="module" src="../js/draw.js" defer></script>
         <script src="../js/help.js" defer></script>
         <script type="module" src="../js/change.js" defer></script>
-        <script src="../js/saveload.js" defer></script>
+        <script type="module" src="../js/saveload.js" defer></script>
     </head>
 
     <body>
@@ -151,6 +151,7 @@
             <div class="button-row">
                 <button class="option-button save-load" onclick="save()"><a id="download">Save</a></button>
                 <button class="option-button save-load" onclick="load()">Load</button>
+                <input type="file" id="load-file" onchange="readFile(this)" style="display: none;">
                 <button class="option-button" id="main-draw-button" onclick="showPopUpWindow('draw'); clearDrawForm();">Draw</button>
                 <button class="option-button draw-button" onclick="showPopUpWindow('change')">Change</button>
                 <button class="option-button draw-button" id="help-button" onclick="showPopUpWindow('help'); clearTextArea();">Help</button>
